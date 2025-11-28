@@ -1,0 +1,578 @@
+﻿﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGYÁ - Catálogo Premium</title>
+    <style>
+        /* 🎨 PALETA E TIPOGRAFIA */
+        :root {
+            --cor-primaria: #000000;
+            --cor-secundaria: #ffffff;
+            --cor-destaque: #a87932; 
+            --cor-whatsapp: #25D366; 
+            --cor-fundo: #f9f9f9; 
+            --cor-borda: #e0e0e0;
+            --sombra-leve: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cor-fundo);
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 🏷️ CABEÇALHO (HEADER) - Estilo Flex para a Logo */
+        header {
+            background-color: var(--cor-primaria);
+            color: var(--cor-secundaria);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .logo-container img {
+            height: 60px; 
+            margin-right: 15px;
+            filter: invert(100%); 
+            /* Caminho do Logo */
+            content: url("fotos/logo/logo sem nome.png");
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        header p {
+            margin-top: 5px;
+            font-size: 1em;
+            color: #ccc;
+        }
+
+        /* 🧭 NAVEGAÇÃO (NAV) */
+        nav {
+            background-color: var(--cor-secundaria);
+            border-bottom: 1px solid var(--cor-borda);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        nav a {
+            display: block;
+            color: var(--cor-primaria);
+            text-align: center;
+            padding: 15px 25px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: color 0.3s, border-bottom 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        nav a:hover,
+        nav a.active {
+            color: var(--cor-destaque);
+            border-bottom: 3px solid var(--cor-destaque);
+        }
+        
+        /* 📦 CONTAINER E SEÇÕES */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        section {
+            padding: 30px;
+            background-color: var(--cor-secundaria);
+            margin-bottom: 30px;
+            border-radius: 4px;
+            box-shadow: var(--sombra-leve);
+        }
+        section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--cor-primaria);
+            font-size: 2em;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--cor-destaque);
+            display: block;
+            padding-bottom: 5px;
+        }
+
+        /* 🛍️ LISTA DE PRODUTOS (GRID) */
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .produto {
+            /* Mantém 3 produtos por linha em telas grandes */
+            flex: 1 1 calc(33.333% - 20px); 
+            min-width: 250px;
+            text-align: center;
+            border: 1px solid var(--cor-borda);
+            padding: 15px;
+            border-radius: 4px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: white;
+            padding-bottom: 5px; 
+        }
+        .produto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .produto img {
+            width: 100%; 
+            height: auto; 
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            background-color: #f0f0f0; 
+        }
+        
+        /* Botão Consultar (WhatsApp) */
+        .btn-consultar {
+            background-color: var(--cor-whatsapp);
+            color: var(--cor-secundaria);
+            border: none;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            display: block;
+            width: 90%;
+            margin: 0 auto 10px auto;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-consultar:hover {
+            background-color: #1DA851;
+        }
+        
+        /* 📝 SEÇÃO SOBRE NÓS E CTA */
+        .sobre-nos {
+            text-align: center;
+            padding: 50px 0;
+            background-color: var(--cor-primaria);
+            color: var(--cor-secundaria);
+            border-radius: 0;
+            box-shadow: none;
+        }
+        .sobre-nos h2 {
+            color: var(--cor-destaque);
+            border-bottom: 2px solid var(--cor-secundaria);
+            margin-bottom: 20px;
+        }
+        .sobre-nos p {
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #ccc;
+        }
+        
+        .cta-contato {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .cta-contato h3 {
+            color: var(--cor-destaque);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        /* 👣 RODAPÉ (FOOTER) */
+        footer {
+            background-color: #1a1a1a;
+            color: #ddd;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .social-links a {
+            color: #ddd;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--cor-destaque);
+        }
+        footer p {
+            margin-top: 15px;
+            margin-bottom: 0;
+        }
+
+        /* Classes de exibição */
+        .content-section {
+            display: none;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .produto {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .produto {
+                flex: 1 1 100%;
+            }
+            .logo-container img {
+                height: 45px;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="fotos/logo/logo sem nome.png" alt="Logo LOGYÁ">
+            <h1>LOGYÁ</h1>
+        </div>
+        <p>Catálogo Premium: Consulte Nossos Preços Exclusivos e Condições de Pagamento</p>
+    </header>
+
+    <nav>
+        <a href="#bolsas" onclick="showSection('bolsas', this)">Bolsas</a>
+        <a href="#roupas-femininas" onclick="showSection('roupas-femininas', this)">Roupas Femininas</a>
+        <a href="#roupas-masculinas" onclick="showSection('roupas-masculinas', this)">Roupas Masculinas</a>
+    </nav>
+
+    <div class="container">
+        
+        <section id="bolsas" class="content-section">
+            <h2>🛍️ Coleção de Bolsas</h2>
+            <div class="product-grid">
+                
+                <div class="produto">
+                    <img src="fotos/bolsa/bolsas 1/1.jpeg" alt="Bolsa 1 - Foto 1">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%201%20(Foto%201).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/bolsa/bolsas 1/2.jpeg" alt="Bolsa 1 - Foto 2">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%201%20(Foto%202).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/bolsa/bolsas 1/3.jpeg" alt="Bolsa 1 - Foto 3">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%201%20(Foto%203).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/bolsa/bolsas 1/4.jpeg" alt="Bolsa 1 - Foto 4">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%201%20(Foto%204).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                
+                <div class="produto">
+                    <img src="fotos/bolsa/bolsas 2/1.jpeg" alt="Bolsa 2 - Foto 1">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%202%20(Foto%201).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/bolsa/bolsas 2/2.jpeg" alt="Bolsa 2 - Foto 2">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%202%20(Foto%202).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/bolsa/bolsas 2/3.jpeg" alt="Bolsa 2 - Foto 3">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%202%20(Foto%203).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/bolsa/bolsas 2/4.jpeg" alt="Bolsa 2 - Foto 4">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%202%20(Foto%204).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+
+                <div class="produto">
+                    <img src="fotos/bolsa/bolsas 3/1.jpeg" alt="Bolsa 3 - Foto 1">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%203%20(Foto%201).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/bolsa/bolsas 3/2.jpeg" alt="Bolsa 3 - Foto 2">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%203%20(Foto%202).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/bolsa/bolsas 3/3.jpeg" alt="Bolsa 3 - Foto 3">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%203%20(Foto%203).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/bolsa/bolsas 3/4.jpeg" alt="Bolsa 3 - Foto 4">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Bolsa%203%20(Foto%204).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="roupas-femininas" class="content-section">
+            <h2>👗 Moda Feminina</h2>
+            <div class="product-grid">
+                
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 1/1.jpeg" alt="Feminino 1 - Foto 1">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%201%20(Foto%201).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 1/2.jpeg" alt="Feminino 1 - Foto 2">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%201%20(Foto%202).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 1/3.jpeg" alt="Feminino 1 - Foto 3">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%201%20(Foto%203).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 1/4.jpeg" alt="Feminino 1 - Foto 4">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%201%20(Foto%204).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 2/1.jpeg" alt="Feminino 2 - Foto 1">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%202%20(Foto%201).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 2/2.jpeg" alt="Feminino 2 - Foto 2">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%202%20(Foto%202).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 2/3.jpeg" alt="Feminino 2 - Foto 3">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%202%20(Foto%203).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 2/4.jpeg" alt="Feminino 2 - Foto 4">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%202%20(Foto%204).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 3/1.jpeg" alt="Feminino 3 - Foto 1">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%203%20(Foto%201).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 3/2.jpeg" alt="Feminino 3 - Foto 2">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%203%20(Foto%202).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 3/3.jpeg" alt="Feminino 3 - Foto 3">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%203%20(Foto%203).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                <div class="produto">
+                    <img src="fotos/modafeminina/moda feminina 3/4.jpeg" alt="Feminino 3 - Foto 4">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Feminina%203%20(Foto%204).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="roupas-masculinas" class="content-section">
+            <h2>👔 Moda Masculina</h2>
+            <div class="product-grid">
+
+                <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 1/1.jpeg" alt="Masculino 1 - Foto 1">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%201%20(Foto%201).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 1/2.jpeg" alt="Masculino 1 - Foto 2">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%201%20(Foto%202).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 1/3.jpeg" alt="Masculino 1 - Foto 3">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%201%20(Foto%203).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 1/4.jpeg" alt="Masculino 1 - Foto 4">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%201%20(Foto%204).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+
+
+                <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 2/1.jpeg" alt="Masculino 2 - Foto 1">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%202%20(Foto%201).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 2/2.jpeg" alt="Masculino 2 - Foto 2">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%202%20(Foto%202).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 2/3.jpeg" alt="Masculino 2 - Foto 3">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%202%20(Foto%203).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 2/4.jpeg" alt="Masculino 2 - Foto 4">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%202%20(Foto%204).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                
+                
+                <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 3/1.jpeg" alt="Masculino 3 - Foto 1">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%203%20(Foto%201).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 3/2.jpeg" alt="Masculino 3 - Foto 2">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%203%20(Foto%202).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 3/3.jpeg" alt="Masculino 3 - Foto 3">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%203%20(Foto%203).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+                 <div class="produto">
+                    <img src="fotos/modamasculina/moda masculina 3/4.jpeg" alt="Masculino 3 - Foto 4">
+                    <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Tenho%20interesse%20na%20Moda%20Masculina%203%20(Foto%204).%20Poderia%20me%20enviar%20o%20preço%20e%20detalhes?" class="btn-consultar" target="_blank">
+                        📞 Consultar no WhatsApp
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <div class="sobre-nos">
+        <div class="container">
+            <h2>✨ Sobre a LOGYÁ</h2>
+            <p>
+                A **LOGYÁ** nasceu com a missão de oferecer o que há de melhor em moda e acessórios, unindo **tendência, qualidade e exclusividade**. Cada peça do nosso catálogo é selecionada pensando na durabilidade e no estilo único dos nossos clientes. Sua satisfação é nossa prioridade!
+            </p>
+            <div class="cta-contato">
+                <h3>Fale Conosco Agora!</h3>
+                <p>Nossos consultores estão disponíveis no WhatsApp para tirar suas dúvidas e te ajudar a encontrar a peça perfeita. Clique e converse!</p>
+                <a href="https://wa.me/5521960163961?text=Olá,%20LOGYÁ!%20Gostaria%20de%20falar%20com%20um%20consultor%20sobre%20os%20produtos%20do%20catálogo." class="btn-consultar" style="background-color: var(--cor-destaque); color: var(--cor-primaria); margin-top: 20px;" target="_blank">
+                    💬 CHAT LOGYÁ (21) 96016-3961
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank">Instagram</a>
+            |
+            <a href="#" target="_blank">Facebook</a>
+            |
+            <a href="https://wa.me/5521960163961" target="_blank">WhatsApp</a>
+        </div>
+        <p>&copy; 2025 LOGYÁ - Todos os direitos reservados.</p>
+        <p>Desenvolvido com carinho para o seu negócio.</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId, clickedElement) {
+            var sections = document.querySelectorAll('.content-section');
+            sections.forEach(function(section) {
+                section.style.display = 'none';
+            });
+            
+            var navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+            });
+            
+            var activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.style.display = 'block';
+            }
+
+            if (clickedElement) {
+                clickedElement.classList.add('active');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var firstLink = document.querySelector('nav a[href="#bolsas"]');
+            if (firstLink) {
+                showSection('bolsas', firstLink);
+            }
+        });
+    </script>
+
+</body>
+</html>
